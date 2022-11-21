@@ -7,8 +7,8 @@ const BRoutes=()=>
     return(
         <div>
             <Routes>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/Auth" component={Auth}/>
+                <Route exact path="/" element={<Home/>} />
+                <Route exact path="/Auth" element={<Auth/>}/>
             </Routes>
         </div>)
 }
