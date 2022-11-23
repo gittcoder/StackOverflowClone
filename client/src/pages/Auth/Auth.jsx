@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import './Auth.css'
 import icon from '../../assets/logo-stackoverflow.png'
 import AboutAuth from "./AboutAuth"
+import './Auth.css'
 
 const Auth=()=>
 {
@@ -13,7 +14,8 @@ const Auth=()=>
     return(
         <div>
             <section className="auth-section">
-                <div className="auth-container">
+                { isSignup && <AboutAuth/>}
+                <div className="auth-container-2">
                     {isSignup&& <img src={icon} alt="stack Overflow" className="login-logo" width="18"></img>}
                     <form>
                         {
@@ -30,9 +32,9 @@ const Auth=()=>
                             <input type="email" name="email" id="email"/>
                         </label>
                         <label htmlFor="password">
-                            <div>
+                            <div style={{display:"flex",justifyContent:"space-between"}}>
                                 <h4>Password</h4>
-                                {!isSignup && <h4>forgot Password?</h4>}
+                                {!isSignup && <p style={{color:"#007ac6"}}>forgot Password?</p>}
                             </div>
                             <input type="password" name="password" id="password"/>
                             {isSignup && <p>Passwords must contain at least eight <br/> characters, including at least 1 letter and 1<br/> number.</p>}

@@ -3,7 +3,7 @@ import react from 'react';
 const AboutAuth =() =>
 {
  return(
-    <div>
+    <div class="auth-container-1">
         <p>Join the Stack Overflow community<br/>
 Get unstuck — ask a question<br/>
 
