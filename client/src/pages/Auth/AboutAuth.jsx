@@ -4,7 +4,7 @@ const AboutAuth =() =>
 {
  return(
     <div class="auth-container-1">
-        <p>Join the Stack Overflow community<br/>
+        <p><h1>Join the Stack Overflow community</h1><br/>
 Get unstuck — ask a question<br/>
 
 Unlock new privileges like voting and commenting<br/>
