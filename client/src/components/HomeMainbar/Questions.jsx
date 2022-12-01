@@ -5,7 +5,7 @@ const Questions = ({question}) => {
     <div className="display-ans-container">
       <div className="display-vote-ans">
         <p>{question.votes}</p>
-        
+        <p>Hello</p>
         </div>
     </div>
   )

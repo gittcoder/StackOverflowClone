@@ -15,7 +15,7 @@ const Questions=()=>
 
                 </div>
 
-                <Link to ="/AskQuestion"></Link>
+                <Link to ="/AskQuestion">Ask Questions</Link>
 
         </div>
         )
