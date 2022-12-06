@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import Auth from './pages/Auth/Auth';
 import Questions from './components/Questions/Questions';
 import AskQuestion from './pages/AskQuestion/AskQuestion';
+import DisplayQuestion from './components/Questions/DisplayQuestion';
 const BRoutes=()=>
 {
     return(
@@ -13,6 +14,7 @@ const BRoutes=()=>
                 <Route exact path="/Auth" element={<Auth/>}/>
                 <Route exact path="/Questions" element={<Questions/>}/>
                 <Route exact path="/AskQuestion" element={<AskQuestion/>}/>
+                <Route exact path="/DisplayQuestion" element={<DisplayQuestion/>}/>
             </Routes>
         </div>)
 }

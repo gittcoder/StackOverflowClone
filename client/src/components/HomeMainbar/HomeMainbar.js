@@ -4,7 +4,7 @@ import {Link,useLocation,useNavigate} from 'react-router-dom';
 import QuestionsList from './QuestionsList';
 const HomeMainbar=()=>
 {
-    const user=null;
+    const user=1;
     const navigate = useNavigate();
     var questionList=[];
     const location = useLocation();
