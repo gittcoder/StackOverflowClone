@@ -2,11 +2,13 @@ import react from 'react';
 import './HomeMainbar.css';
 import {Link,useLocation,useNavigate} from 'react-router-dom';
 import QuestionsList from './QuestionsList';
+import { useSelector } from 'react-redux';
 const HomeMainbar=()=>
 {
     const user=1;
     const navigate = useNavigate();
-    var questionList=[];
+    const questionList=useSelector(state=>state.questionsReducer);
+    console.log(questionList);
     const location = useLocation();
     const redirect = ()=>
     {
@@ -32,11 +34,11 @@ const HomeMainbar=()=>
         </div>
         <div>
             {
-                questionList===null?
+                questionList.data===null?
                 <h1>Loading....</h1>:
                 <>
-                <p>{questionList.length} Questions</p>
-                <QuestionsList questionList={questionList}/>
+                <p>{questionList.data.length} Questions</p>
+                <QuestionsList questionList={questionList.data}/>
                 </>
             }
             </div>

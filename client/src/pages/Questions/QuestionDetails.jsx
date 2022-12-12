@@ -6,19 +6,20 @@ import './QuestionDetails.css'
 import { Link } from 'react-router-dom';
 import Avatar from "../../components/Avatar/Avatar"
 import DisplayAnswers from './DisplayAnswers'
+import {useSelector} from 'react-redux'
 const QuestionDetails = () => {
     const {id} = useParams();
-    const questionsList=[];
+    const questionsList=useSelector(state=>state.questionReducer);
   return (
     <div>
         <h1>Question Details</h1>
         <div className="question-details-page">
     {
-        questionsList===null?
+        questionsList.data===null?
         <h1>Loading....</h1>:
         <>
             {
-                questionsList.filter(question=>question._id===id).map((question)=>{
+                questionsList.data.filter(question=>question._id===id).map((question)=>{
                 
                     <div key={question._id}>
                         <section className="question-details-container">

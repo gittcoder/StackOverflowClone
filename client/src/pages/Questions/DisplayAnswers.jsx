@@ -1,7 +1,7 @@
 import React from 'react'
 import QuestionDetails from './QuestionDetails'
 import { Link } from 'react-router-dom'
-import Avatar from '../Avatar/Avatar'
+import Avatar from '../../components/Avatar/Avatar'
 const DisplayAnswers = ({question}) => {
   return (
     <div>
