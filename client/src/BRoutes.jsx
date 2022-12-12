@@ -14,7 +14,7 @@ const BRoutes=()=>
                 <Route exact path="/Auth" element={<Auth/>}/>
                 <Route exact path="/Questions" element={<Questions/>}/>
                 <Route exact path="/AskQuestion" element={<AskQuestion/>}/>
-                <Route exact path="/DisplayQuestion" element={<DisplayQuestion/>}/>
+                <Route exact path="/DisplayQuestion/:id" element={<DisplayQuestion/>}/>
             </Routes>
         </div>)
 }

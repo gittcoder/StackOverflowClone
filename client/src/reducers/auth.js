@@ -9,7 +9,7 @@ const authReducer = (state=newState,action)=>
         case "AUTH":
             localStorage.setItem("Profile",JSON.stringify({...action?.data}))
             return {...state,data:action?.data};
-        default:return;
+        default:return state;
     }
 
     return state;

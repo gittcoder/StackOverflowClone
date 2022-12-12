@@ -16,7 +16,7 @@ app.get('/',(req,res)=>
 
 app.use('/user',userRoutes)
 
-const PORT = process.env.PORT||3500
+const PORT = process.env.PORT||3500;
 
 
 const CONNECTION_URL = "mongodb+srv://nqsfYYyUw58TEpbw:szG6sTXG5LU8sxKT@stack-overflow-clone.dxm1mbd.mongodb.net/?retryWrites=true&w=majority"
