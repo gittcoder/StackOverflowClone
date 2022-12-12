@@ -5,6 +5,7 @@ import logo from '../../assets/logo-stackoverflow.png'
 import Avatar from '../../components/Avatar/Avatar'
 import Button from '../../components/Button/Button'
 import './Navbar.css'
+import {setCurrentUser} from '../../actions/setCurrentUser'
 import {useSelector,useDispatch} from 'react-redux'
 const Navbar = ()=>{
     const dispatch=useDispatch()

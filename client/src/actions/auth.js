@@ -1,5 +1,5 @@
 import * as api from '../api'
-
+import {setCurrentUser} from './setCurrentUser'
 export const signup=(authData,navigate) => async (dispatch) =>{
     try {
         
@@ -18,6 +18,7 @@ export const login=(authData,navigate) => async (dispatch) =>{
         
             const {data} = await api.logIn(authData)
             dispatch({type:"AUTH",data})
+            dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))))
             navigate("/");
     }
     catch(err)
