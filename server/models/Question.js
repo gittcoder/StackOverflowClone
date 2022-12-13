@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
-
-const QuestionSchemaa=mongoose.Schemae({
+const Questions=mongoose.Schema({
     questionTitle:{type:String,required:"Question must have a title"},
     questionBody:{type:String,required:"Question must have a body"},
     questionTags:{type:[String],required:"Question must have a tags"},
@@ -15,3 +14,5 @@ const QuestionSchemaa=mongoose.Schemae({
     userId:String,
     answeredOn:{type:Date,default:Date.now}}]
 })
+
+export default Questions;
