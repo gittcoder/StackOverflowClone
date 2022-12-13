@@ -31,7 +31,9 @@ const Navbar = ()=>{
                 {User===null?
                 <Link to="/Auth" className='nav-button nav-links'>Log in</Link>:
                 <>
-                <Link to="/" style={{color:"white",textDecoration:"none"}}><Avatar 
+                <Link to="/" style={{color:"white",textDecoration:"none"}}>
+                    {/* {User.result.name.charAt(0).toUpperCase()} */}
+                    <Avatar 
                 backgroundColor="#009dff"
                 px="10px" py="7px" borderRadius="50%"
                 >

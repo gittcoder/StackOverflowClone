@@ -1,13 +1,57 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {useParams} from 'react-router-dom';
 import upvote from '../../assets/arrow-up-solid.svg'
 import downvote from '../../assets/arrow-down-solid.svg'
 import './QuestionDetails.css'
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate,useLocation} from 'react-router-dom';
 import Avatar from "../../components/Avatar/Avatar"
 import DisplayAnswers from './DisplayAnswers'
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import {postAnswer,deleteQuestion} from '../../actions/question'
+
+import  moment from 'moment'
+import copy from 'copy-to-clipboard'
 const QuestionDetails = () => {
+    const location = useLocation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const[Answer,setAnswer] = useState("");
+    const User = useSelector((state)=>(state.currentUserReducer))
+    const url='http://localhost:3000'
+const handleSubmit=(e,answerLength)=>
+{
+    e.preventDefault();
+    if(User===null)
+    {
+        alert("Login or Signup to answer a question!!")
+        navigate('/Auth')
+    }
+    else
+    {
+        if(Answer==="")
+        {
+            alert("Enter an Answer before submitting")
+        }
+        else
+        {
+            dispatch(postAnswer({id,noOfAnswers:answerLength+1,answerBody:Answer,userAnswered:User.result.name,userId:User.result._id}))
+        }
+    }
+}
+
+
+const handleShare=()=>
+{
+    copy(url+location.pathname)
+    alert("Copied url : " +url+location.pathname)
+}
+
+const handleDelete=()=>
+{
+    dispatch(deleteQuestion(id,navigate))
+}
+
+
     const {id} = useParams();
     const questionsList=useSelector(state=>state.questionReducer);
   return (
@@ -41,11 +85,11 @@ const QuestionDetails = () => {
                                         }
                                     </div>
                                     <div className="question-action-user">
-                                        <button type="button">Share</button>
-                                        <button type="button">Delete</button>
+                                        <button type="button" onClick = {handleShare}>Share</button>
+                                        <button type="button" onClick={handleDelete}>Delete</button>
                                     </div>
                                     <div>
-                                        <p>asked {question.askedOn}</p>
+                                        <p>asked {moment(question.askedOn).fromNow()}</p>
                                         <Link to={`/User/${question.userId}`} className="user-link" style={{color:"#0086d8"}}>
                                             <Avatar  backgroundColor="orange" px="8px" py="5px">{question.userPoster.charAt(0).toUpperCase()}</Avatar>
                                             <div>
@@ -62,7 +106,7 @@ const QuestionDetails = () => {
                                 <h3>
                                     {question.noOfAnswers}
                                 </h3>
-                                <DisplayAnswers key={question._id} question={question}/>
+                                <DisplayAnswers key={question._id} question={question}  handleShare={handleShare}/>
                                 </section>
                             )
                         }
@@ -70,8 +114,8 @@ const QuestionDetails = () => {
                             <h3>
                         Your Answer
                             </h3>
-                            <form>
-                                <textarea name=""  id="" cols="30" rows="10" ></textarea>
+                            <form onSubmit={(e)=>{handleSubmit(e,question.answer.length)}}>
+                                <textarea name=""  id="" cols="30" rows="10" onChange={e=>setAnswer(e.target.value)}></textarea>
                                 <input type="submit" className="post-ans-btn" value="Post Your Answer"></input>                            
                                 </form>
                                 <p>
