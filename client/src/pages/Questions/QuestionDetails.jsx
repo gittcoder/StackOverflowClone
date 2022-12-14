@@ -7,7 +7,7 @@ import { Link ,useNavigate,useLocation} from 'react-router-dom';
 import Avatar from "../../components/Avatar/Avatar"
 import DisplayAnswers from './DisplayAnswers'
 import {useSelector,useDispatch} from 'react-redux'
-import {postAnswer,deleteQuestion} from '../../actions/question'
+import {postAnswer,deleteQuestion,voteQuestion} from '../../actions/question'
 
 import  moment from 'moment'
 import copy from 'copy-to-clipboard'
@@ -49,6 +49,17 @@ const handleShare=()=>
 const handleDelete=()=>
 {
     dispatch(deleteQuestion(id,navigate))
+    
+}
+
+const handleDownVote =() =>
+{
+    dispatch(voteQuestion(id,"downVote",User.result._id))
+}
+
+const handleUpVote = ()=>
+{
+    dispatch(voteQuestion(id,"upVote",User.result._id))
 }
 
 
@@ -70,9 +81,9 @@ const handleDelete=()=>
                             <h1>{question.questionTitle}</h1>
                             <div className="question-details-container-2">
                                 <div className="question-votes">
-                                    <img src={upvote} alt="" width="18"></img>
-                                    <p>{question.upVotes-question.downVotes}</p>
-                                    <img src={downvote} alt="" width="18"></img>
+                                    <img src={upvote} alt="" width="18" className="vote-icon" onClick={handleUpVote}></img>
+                                    <p>{question.upVotes.length-question.downVotes.length}</p>
+                                    <img src={downvote} alt="" width="18" className="vote-icon" onClick={handleDownVote}></img>
                                 </div>
                                 <div style={{width:"100%"}} >
                                     <p className="question-body">{question.questionBody}</p>
@@ -86,7 +97,11 @@ const handleDelete=()=>
                                     </div>
                                     <div className="question-action-user">
                                         <button type="button" onClick = {handleShare}>Share</button>
-                                        <button type="button" onClick={handleDelete}>Delete</button>
+                                        {
+                                            User?.result?._id=== question?.userId &&(
+                                                <button type="button" onClick={handleDelete}>Delete</button>)
+                                        }
+                                        
                                     </div>
                                     <div>
                                         <p>asked {moment(question.askedOn).fromNow()}</p>
@@ -106,7 +121,7 @@ const handleDelete=()=>
                                 <h3>
                                     {question.noOfAnswers}
                                 </h3>
-                                <DisplayAnswers key={question._id} question={question}  handleShare={handleShare}/>
+                                <DisplayAnswers key={question._id} question={question}  handleShare={handleShare} handleDelete={handleDelete}/>
                                 </section>
                             )
                         }

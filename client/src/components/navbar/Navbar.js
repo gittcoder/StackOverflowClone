@@ -1,10 +1,11 @@
 import react,{useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import search from '../../assets/magnifying-glass-solid.svg'
 import logo from '../../assets/logo-stackoverflow.png'
 import Avatar from '../../components/Avatar/Avatar'
 import Button from '../../components/Button/Button'
 import './Navbar.css'
+import decode from 'jwt-decode'
 import {setCurrentUser} from '../../actions/setCurrentUser'
 import {useSelector,useDispatch} from 'react-redux'
 const Navbar = ()=>{
@@ -12,8 +13,24 @@ const Navbar = ()=>{
     let User=useSelector((state)=>(state.currentUserReducer))
     // const User=123;
     useEffect(()=>{
+        const token=User?.token
+        if(token)
+        {
+            const decodeToken=decode(token)
+            if(decodeToken.exp*1000<new Date().getTime())
+            {
+                handleLogout()
+            }
+        }
         dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))))
     })
+    const navigate = useNavigate();
+    const handleLogout=()=>
+    {
+        dispatch({type:"LOGOUT"})
+        navigate('/')
+        dispatch(setCurrentUser(null))
+    }
 
     return (
         <nav className="main-nav">
@@ -37,10 +54,10 @@ const Navbar = ()=>{
                 backgroundColor="#009dff"
                 px="10px" py="7px" borderRadius="50%"
                 >
-                    M
+                    <Link to={`/Users/${User?.result?._id}`} style={{color:"white",textDecoration:"none"}}>{User.result.name.charAt(0).toUpperCase()}</Link>
                 </Avatar>
                 </Link>
-                <button className="nav-button nav-links">Log Out</button>
+                <button className="nav-button nav-links" onClick={handleLogout}>Log Out</button>
                 </>
                 }
             </div>
