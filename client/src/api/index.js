@@ -23,3 +23,4 @@ export const postAnswer=(id,noOfAnswers,answerBody,userAnswered,userId) => API.p
 export const deleteAnswer= (id,answerId,noOfAnswers) => API.patch(`/answer/delete/${id}`,{id,answerId,noOfAnswers})
 
 export const fetchAllUsers =()=>API.get('/user/getAllUsers');
+export const updateProfile = (id,updateData)=> parseInt.patch(`/user/update/${id}`,updateData)

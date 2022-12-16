@@ -7,6 +7,7 @@ import AskQuestion from './pages/AskQuestion/AskQuestion';
 import DisplayQuestion from './pages/Questions/DisplayQuestion';
 import Tags from './pages/Tags/Tags'
 import Users from './pages/Users/Users'
+import UserProfile from './pages/UserProfile/UserProfile'
 const BRoutes=()=>
 {
     return(
@@ -19,6 +20,7 @@ const BRoutes=()=>
                 <Route exact path="/DisplayQuestion/:id" element={<DisplayQuestion/>}/>
                 <Route exact path="/Tags" element={<Tags/>}/>
                 <Route exact path="/Users" element={<Users/>}/>
+                <Route exact path="/Users/:id" element={<UserProfile/>}/>
             </Routes>
         </div>)
 }
