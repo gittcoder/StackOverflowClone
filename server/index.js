@@ -21,7 +21,7 @@ app.use('/user', userRoutes)
 app.use('/questions', questionRoutes)
 app.use('/answer', answerRoutes)
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3500
 
 const DATABASE_URL = "mongodb+srv://nqsfYYyUw58TEpbw:szG6sTXG5LU8sxKT@stack-overflow-clone.dxm1mbd.mongodb.net/?retryWrites=true&w=majority"
 
